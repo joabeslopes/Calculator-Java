@@ -12,12 +12,16 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class guiCalculator extends JFrame {
 
 	final int WIDHT = 330;
 	final int HEIGHT = 380;
 	private JTextField textField;
+	private int numb = 0;
+	private int result = 0;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -50,10 +54,19 @@ public class guiCalculator extends JFrame {
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setFont(new Font("Dialog", Font.PLAIN, 20));
 		textField.setBounds(12, 12, 306, 50);
-		panel.add(textField);
 		textField.setColumns(10);
+		textField.setText(Integer.toString(result));
+		panel.add(textField);
 		
 		JButton btnAdd = new JButton("+");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				numb = Integer.parseInt(textField.getText() );
+				result +=numb;
+				textField.setText(Integer.toString(result) );
+			}
+		});
+		
 		btnAdd.setFont(new Font("Dialog", Font.BOLD, 22));
 		btnAdd.setBounds(25, 74, 125, 72);
 		panel.add(btnAdd);
