@@ -11,6 +11,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class guiCalculator extends JFrame {
 
@@ -36,7 +38,36 @@ public class guiCalculator extends JFrame {
 		});
 	}
 
+	public String charFilter(String string) {
+		
+		String filter = string;
+		if (filter.matches("[+]+")){
+			filter = filter.replaceAll("+", "");
+		}
+		if (filter.matches("[-]+")){
+			filter = filter.replace("-", "");
+		}
+		if (filter.matches("[*]+")){
+			filter = filter.replace("*", "");
+		}
+		if (filter.matches("[/]+")){
+			filter = filter.replace("/", "");
+		}
+		
+		
+		return filter;
+		
+	}
+	
 	public guiCalculator() {
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowActivated(WindowEvent e) {
+				textFieldInput.requestFocus();
+			}
+		});
+		
 		setResizable(false);
 		setSize(WIDHT, HEIGHT);
 		setLocationRelativeTo(null);
@@ -51,6 +82,7 @@ public class guiCalculator extends JFrame {
 		panel.setLayout(null);
 		
 		textFieldInput = new JTextField();
+
 		textFieldInput.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldInput.setFont(new Font("Dialog", Font.PLAIN, 20));
 		textFieldInput.setBounds(12, 57, 306, 40);
@@ -68,7 +100,8 @@ public class guiCalculator extends JFrame {
 					result +=numb;
 					textFieldResult.setText(Integer.toString(result) );
 				}
-				
+				textFieldInput.setText("");
+				textFieldInput.requestFocus();
 			}
 		});
 		
@@ -77,28 +110,73 @@ public class guiCalculator extends JFrame {
 		panel.add(btnAdd);
 		
 		JButton btnSub = new JButton("-");
+		btnSub.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				input = textFieldInput.getText();
+				if (input.matches(regexNumb) ) {
+					numb = Integer.parseInt(input);
+					result -=numb;
+					textFieldResult.setText(Integer.toString(result) );
+				}
+				textFieldInput.setText("");
+				textFieldInput.requestFocus();
+			}
+		});
 		btnSub.setFont(new Font("Dialog", Font.BOLD, 22));
 		btnSub.setBounds(180, 109, 120, 60);
 		panel.add(btnSub);
 		
 		JButton btnMult = new JButton("*");
+		btnMult.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				input = textFieldInput.getText();
+				if (input.matches(regexNumb) ) {
+					numb = Integer.parseInt(input);
+					result *=numb;
+					textFieldResult.setText(Integer.toString(result) );
+				}
+				textFieldInput.setText("");
+				textFieldInput.requestFocus();
+			}
+		});
 		btnMult.setFont(new Font("Dialog", Font.BOLD, 22));
 		btnMult.setBounds(30, 188, 120, 60);
 		panel.add(btnMult);
 		
 		JButton btnDiv = new JButton("/");
+		btnDiv.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				input = textFieldInput.getText();
+				if (input.matches(regexNumb) ) {
+					numb = Integer.parseInt(input);
+					result /=numb;
+					textFieldResult.setText(Integer.toString(result) );
+				}
+				textFieldInput.setText("");
+				textFieldInput.requestFocus();
+				
+			}
+		});
 		btnDiv.setFont(new Font("Dialog", Font.BOLD, 22));
 		btnDiv.setBounds(180, 188, 120, 60);
 		panel.add(btnDiv);
 		
-		JButton btnResult = new JButton("=");
-		btnResult.setFont(new Font("Dialog", Font.BOLD, 22));
-		btnResult.setBounds(180, 260, 120, 70);
-		panel.add(btnResult);
-		
 		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				result = 0;
+				textFieldResult.setText(Integer.toString(result) );
+				textFieldInput.setText("");
+				textFieldInput.requestFocus();
+				
+			}
+		});
 		btnClear.setFont(new Font("Dialog", Font.BOLD, 22));
-		btnClear.setBounds(30, 260, 120, 70);
+		btnClear.setBounds(105, 260, 120, 70);
 		panel.add(btnClear);
 		
 		textFieldResult = new JTextField();
