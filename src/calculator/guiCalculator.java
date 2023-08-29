@@ -4,10 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -19,9 +16,12 @@ public class guiCalculator extends JFrame {
 
 	final int WIDHT = 330;
 	final int HEIGHT = 380;
-	private JTextField textField;
+	private JTextField textFieldInput;
+	private String input;
+	private String regexNumb = "[0-9]+";
 	private int numb = 0;
 	private int result = 0;
+	private JTextField textFieldResult;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -50,46 +50,65 @@ public class guiCalculator extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setFont(new Font("Dialog", Font.PLAIN, 20));
-		textField.setBounds(12, 12, 306, 50);
-		textField.setColumns(10);
-		textField.setText(Integer.toString(result));
-		panel.add(textField);
+		textFieldInput = new JTextField();
+		textFieldInput.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldInput.setFont(new Font("Dialog", Font.PLAIN, 20));
+		textFieldInput.setBounds(12, 57, 306, 40);
+		textFieldInput.setColumns(10);
+		panel.add(textFieldInput);
+		
 		
 		JButton btnAdd = new JButton("+");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				numb = Integer.parseInt(textField.getText() );
-				result +=numb;
-				textField.setText(Integer.toString(result) );
+				
+				input = textFieldInput.getText();
+				if (input.matches(regexNumb) ) {
+					numb = Integer.parseInt(input);
+					result +=numb;
+					textFieldResult.setText(Integer.toString(result) );
+				}
+				
 			}
 		});
 		
 		btnAdd.setFont(new Font("Dialog", Font.BOLD, 22));
-		btnAdd.setBounds(25, 74, 125, 72);
+		btnAdd.setBounds(30, 109, 120, 60);
 		panel.add(btnAdd);
 		
 		JButton btnSub = new JButton("-");
 		btnSub.setFont(new Font("Dialog", Font.BOLD, 22));
-		btnSub.setBounds(176, 74, 125, 72);
+		btnSub.setBounds(180, 109, 120, 60);
 		panel.add(btnSub);
 		
 		JButton btnMult = new JButton("*");
 		btnMult.setFont(new Font("Dialog", Font.BOLD, 22));
-		btnMult.setBounds(25, 171, 125, 72);
+		btnMult.setBounds(30, 188, 120, 60);
 		panel.add(btnMult);
 		
 		JButton btnDiv = new JButton("/");
 		btnDiv.setFont(new Font("Dialog", Font.BOLD, 22));
-		btnDiv.setBounds(176, 171, 125, 72);
+		btnDiv.setBounds(180, 188, 120, 60);
 		panel.add(btnDiv);
 		
 		JButton btnResult = new JButton("=");
 		btnResult.setFont(new Font("Dialog", Font.BOLD, 22));
-		btnResult.setBounds(100, 260, 125, 72);
+		btnResult.setBounds(180, 260, 120, 70);
 		panel.add(btnResult);
+		
+		JButton btnClear = new JButton("Clear");
+		btnClear.setFont(new Font("Dialog", Font.BOLD, 22));
+		btnClear.setBounds(30, 260, 120, 70);
+		panel.add(btnClear);
+		
+		textFieldResult = new JTextField();
+		textFieldResult.setText("0");
+		textFieldResult.setEditable(false);
+		textFieldResult.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldResult.setFont(new Font("Dialog", Font.PLAIN, 20));
+		textFieldResult.setBounds(105, 12, 120, 35);
+		textFieldResult.setColumns(10);
+		panel.add(textFieldResult);
 
 	}
 }
