@@ -357,7 +357,14 @@ public class guiCalculator extends JFrame {
 				if(k.getKeyCode() == KeyEvent.VK_BACK_SPACE)
 			    {  
 			        buttonBackspace.doClick();
-			    } else 
+			    }
+				
+				else if (k.getKeyCode() == KeyEvent.VK_ESCAPE || k.getKeyCode() == KeyEvent.VK_C ) 
+				{
+					buttonClear.doClick();
+				}
+				
+				else 
 			    {
 			    	Character key = k.getKeyChar();
 			    	String keyValue = key.toString();
@@ -411,7 +418,6 @@ public class guiCalculator extends JFrame {
 					}
 			    	
 			    }
-
 			
 			}
 		});
