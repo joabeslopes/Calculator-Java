@@ -20,9 +20,9 @@ public class guiCalculator extends JFrame {
 	final int HEIGHT = 380;
 	private JTextField textFieldInput;
 	private String input;
-	private String regexNumb = "[0-9]+";
-	private int numb = 0;
-	private int result = 0;
+	private String regexNumb = "[0-9]*.[0-9]*";
+	private double numb = 0.0;
+	private double result = 0.0;
 	private JTextField textFieldResult;
 	
 	public static void main(String[] args) {
@@ -75,9 +75,9 @@ public class guiCalculator extends JFrame {
 				
 				input = textFieldInput.getText();
 				if (input.matches(regexNumb) ) {
-					numb = Integer.parseInt(input);
+					numb = Double.parseDouble(input);
 					result +=numb;
-					textFieldResult.setText(Integer.toString(result) );
+					textFieldResult.setText(Double.toString(result) );
 					numb = 0;
 				}
 				textFieldInput.setText("");
@@ -95,9 +95,9 @@ public class guiCalculator extends JFrame {
 				
 				input = textFieldInput.getText();
 				if (input.matches(regexNumb) ) {
-					numb = Integer.parseInt(input);
+					numb = Double.parseDouble(input);
 					result -=numb;
-					textFieldResult.setText(Integer.toString(result) );
+					textFieldResult.setText(Double.toString(result) );
 					numb = 0;
 				}
 				textFieldInput.setText("");
@@ -114,9 +114,9 @@ public class guiCalculator extends JFrame {
 				
 				input = textFieldInput.getText();
 				if (input.matches(regexNumb) ) {
-					numb = Integer.parseInt(input);
+					numb = Double.parseDouble(input);
 					result *=numb;
-					textFieldResult.setText(Integer.toString(result) );
+					textFieldResult.setText(Double.toString(result) );
 					numb = 0;
 				}
 				textFieldInput.setText("");
@@ -133,9 +133,9 @@ public class guiCalculator extends JFrame {
 				
 				input = textFieldInput.getText();
 				if (input.matches(regexNumb) ) {
-					numb = Integer.parseInt(input);
+					numb = Double.parseDouble(input);
 					result /=numb;
-					textFieldResult.setText(Integer.toString(result) );
+					textFieldResult.setText(Double.toString(result) );
 					numb = 0;
 				}
 				textFieldInput.setText("");
@@ -153,7 +153,7 @@ public class guiCalculator extends JFrame {
 				
 				result = 0;
 				numb = 0;
-				textFieldResult.setText(Integer.toString(result) );
+				textFieldResult.setText(Double.toString(result) );
 				textFieldInput.setText("");
 				textFieldInput.requestFocus();
 				
