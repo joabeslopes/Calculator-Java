@@ -11,6 +11,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class guiCalculator extends JFrame {
 
@@ -29,6 +31,7 @@ public class guiCalculator extends JFrame {
 				try {
 					guiCalculator frame = new guiCalculator();
 					frame.setVisible(true);
+					frame.textFieldInput.requestFocus();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,6 +53,7 @@ public class guiCalculator extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
+
 		textFieldInput = new JTextField();
 		textFieldInput.setEditable(false);
 
@@ -61,8 +65,8 @@ public class guiCalculator extends JFrame {
 		
 		
 		// +
-		JButton btnAdd = new JButton("+");
-		btnAdd.addActionListener(new ActionListener() {
+		JButton buttonAdd = new JButton("+");
+		buttonAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				input = textFieldInput.getText();
@@ -73,16 +77,17 @@ public class guiCalculator extends JFrame {
 				
 				textFieldInput.setText("");
 				pointPressed = false;
+				textFieldInput.requestFocus();
 			}
 		});
-		btnAdd.setFont(new Font("Dialog", Font.BOLD, 22));
-		btnAdd.setBounds(247, 109, 80, 50);
-		panel.add(btnAdd);
+		buttonAdd.setFont(new Font("Dialog", Font.BOLD, 22));
+		buttonAdd.setBounds(247, 109, 80, 50);
+		panel.add(buttonAdd);
 		
 		
 		// -
-		JButton btnSub = new JButton("-");
-		btnSub.addActionListener(new ActionListener() {
+		JButton buttonSub = new JButton("-");
+		buttonSub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				input = textFieldInput.getText();
@@ -92,16 +97,17 @@ public class guiCalculator extends JFrame {
 				numb = 0;
 				textFieldInput.setText("");
 				pointPressed = false;
+				textFieldInput.requestFocus();
 			}
 		});
-		btnSub.setFont(new Font("Dialog", Font.BOLD, 22));
-		btnSub.setBounds(247, 171, 80, 50);
-		panel.add(btnSub);
+		buttonSub.setFont(new Font("Dialog", Font.BOLD, 22));
+		buttonSub.setBounds(247, 171, 80, 50);
+		panel.add(buttonSub);
 		
 		
 		// *
-		JButton btnMult = new JButton("*");
-		btnMult.addActionListener(new ActionListener() {
+		JButton buttonMult = new JButton("*");
+		buttonMult.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				input = textFieldInput.getText();
@@ -112,16 +118,17 @@ public class guiCalculator extends JFrame {
 
 				textFieldInput.setText("");
 				pointPressed = false;
+				textFieldInput.requestFocus();
 			}
 		});
-		btnMult.setFont(new Font("Dialog", Font.BOLD, 22));
-		btnMult.setBounds(247, 232, 80, 50);
-		panel.add(btnMult);
+		buttonMult.setFont(new Font("Dialog", Font.BOLD, 22));
+		buttonMult.setBounds(247, 232, 80, 50);
+		panel.add(buttonMult);
 		
 		
 		// /
-		JButton btnDiv = new JButton("/");
-		btnDiv.addActionListener(new ActionListener() {
+		JButton buttonDiv = new JButton("/");
+		buttonDiv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				input = textFieldInput.getText();
@@ -131,17 +138,18 @@ public class guiCalculator extends JFrame {
 				numb = 0;
 				textFieldInput.setText("");
 				pointPressed = false;
+				textFieldInput.requestFocus();
 				
 			}
 		});
-		btnDiv.setFont(new Font("Dialog", Font.BOLD, 22));
-		btnDiv.setBounds(247, 294, 80, 50);
-		panel.add(btnDiv);
+		buttonDiv.setFont(new Font("Dialog", Font.BOLD, 22));
+		buttonDiv.setBounds(247, 294, 80, 50);
+		panel.add(buttonDiv);
 		
 		
 		// Clear
-		JButton btnClear = new JButton("Clear");
-		btnClear.addActionListener(new ActionListener() {
+		JButton buttonClear = new JButton("Clear");
+		buttonClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				result = 0;
@@ -149,12 +157,13 @@ public class guiCalculator extends JFrame {
 				textFieldResult.setText(Double.toString(result) );
 				textFieldInput.setText("");
 				pointPressed = false;
+				textFieldInput.requestFocus();
 				
 			}
 		});
-		btnClear.setFont(new Font("Dialog", Font.BOLD, 20));
-		btnClear.setBounds(22, 294, 95, 50);
-		panel.add(btnClear);
+		buttonClear.setFont(new Font("Dialog", Font.BOLD, 20));
+		buttonClear.setBounds(22, 294, 95, 50);
+		panel.add(buttonClear);
 		
 		
 		textFieldResult = new JTextField();
@@ -162,7 +171,7 @@ public class guiCalculator extends JFrame {
 		textFieldResult.setEditable(false);
 		textFieldResult.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldResult.setFont(new Font("Dialog", Font.PLAIN, 20));
-		textFieldResult.setBounds(115, 12, 120, 35);
+		textFieldResult.setBounds(102, 12, 150, 35);
 		textFieldResult.setColumns(10);
 		panel.add(textFieldResult);
 		
@@ -173,6 +182,7 @@ public class guiCalculator extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				input = textFieldInput.getText();
 				textFieldInput.setText(input.concat("1"));
+				textFieldInput.requestFocus();
 			}
 		});
 		button1.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -186,6 +196,7 @@ public class guiCalculator extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				input = textFieldInput.getText();
 				textFieldInput.setText(input.concat("2"));
+				textFieldInput.requestFocus();
 			}
 		});
 		button2.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -199,6 +210,7 @@ public class guiCalculator extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				input = textFieldInput.getText();
 				textFieldInput.setText(input.concat("3"));
+				textFieldInput.requestFocus();
 			}
 		});
 		button3.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -212,6 +224,7 @@ public class guiCalculator extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				input = textFieldInput.getText();
 				textFieldInput.setText(input.concat("4"));
+				textFieldInput.requestFocus();
 			}
 		});
 		button4.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -225,6 +238,7 @@ public class guiCalculator extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				input = textFieldInput.getText();
 				textFieldInput.setText(input.concat("5"));
+				textFieldInput.requestFocus();
 			}
 		});
 		button5.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -238,6 +252,7 @@ public class guiCalculator extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				input = textFieldInput.getText();
 				textFieldInput.setText(input.concat("6"));
+				textFieldInput.requestFocus();
 			}
 		});
 		button6.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -251,6 +266,7 @@ public class guiCalculator extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				input = textFieldInput.getText();
 				textFieldInput.setText(input.concat("7"));
+				textFieldInput.requestFocus();
 			}
 		});
 		button7.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -264,6 +280,7 @@ public class guiCalculator extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				input = textFieldInput.getText();
 				textFieldInput.setText(input.concat("8"));
+				textFieldInput.requestFocus();
 			}
 		});
 		button8.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -277,6 +294,7 @@ public class guiCalculator extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				input = textFieldInput.getText();
 				textFieldInput.setText(input.concat("9"));
+				textFieldInput.requestFocus();
 			}
 		});
 		button9.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -290,6 +308,7 @@ public class guiCalculator extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				input = textFieldInput.getText();
 				textFieldInput.setText(input.concat("0"));
+				textFieldInput.requestFocus();
 			}
 		});
 		button0.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -306,12 +325,71 @@ public class guiCalculator extends JFrame {
 					input = textFieldInput.getText();
 					textFieldInput.setText(input.concat("."));
 					pointPressed = true;
+					textFieldInput.requestFocus();
 				}
 			}
 		});
 		buttonPoint.setFont(new Font("Dialog", Font.BOLD, 20));
 		buttonPoint.setBounds(126, 294, 43, 50);
 		panel.add(buttonPoint);
+		
+		textFieldInput.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				Character key = e.getKeyChar();
+				String keyValue = key.toString();
+				
+			switch (keyValue) {
+				case "0":
+					button0.doClick();
+					break;
+				case "1":
+					button1.doClick();
+					break;
+				case "2":
+					button2.doClick();
+					break;
+				case "3":
+					button3.doClick();
+					break;
+				case "4":
+					button4.doClick();
+					break;
+				case "5":
+					button5.doClick();
+					break;
+				case "6":
+					button6.doClick();
+					break;
+				case "7":
+					button7.doClick();
+					break;
+				case "8":
+					button8.doClick();
+					break;
+				case "9":
+					button9.doClick();
+					break;
+				case ".":
+					buttonPoint.doClick();
+					break;
+				case "+":
+					buttonAdd.doClick();
+					break;
+				case "-":
+					buttonSub.doClick();
+					break;
+				case "/":
+					buttonDiv.doClick();
+					break;
+				case "*":
+					buttonMult.doClick();
+					break;
+			}
+				
+			
+			}
+		});
 
 	}
 }
