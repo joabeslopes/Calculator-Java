@@ -11,8 +11,6 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 public class guiCalculator extends JFrame {
 
@@ -20,7 +18,6 @@ public class guiCalculator extends JFrame {
 	final int HEIGHT = 390;
 	private JTextField textFieldInput;
 	private String input;
-	private String regexNumb = "[0-9]*.[0-9]*";
 	private double numb = 0.0;
 	private double result = 0.0;
 	private JTextField textFieldResult;
@@ -69,12 +66,11 @@ public class guiCalculator extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				input = textFieldInput.getText();
-				if (input.matches(regexNumb) ) {
-					numb = Double.parseDouble(input);
-					result +=numb;
-					textFieldResult.setText(Double.toString(result) );
-					numb = 0;
-				}
+				numb = Double.parseDouble(input);
+				result +=numb;
+				textFieldResult.setText(Double.toString(result) );
+				numb = 0;
+				
 				textFieldInput.setText("");
 				pointPressed = false;
 			}
@@ -90,12 +86,10 @@ public class guiCalculator extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				input = textFieldInput.getText();
-				if (input.matches(regexNumb) ) {
-					numb = Double.parseDouble(input);
-					result -=numb;
-					textFieldResult.setText(Double.toString(result) );
-					numb = 0;
-				}
+				numb = Double.parseDouble(input);
+				result -=numb;
+				textFieldResult.setText(Double.toString(result) );
+				numb = 0;
 				textFieldInput.setText("");
 				pointPressed = false;
 			}
@@ -111,12 +105,11 @@ public class guiCalculator extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				input = textFieldInput.getText();
-				if (input.matches(regexNumb) ) {
-					numb = Double.parseDouble(input);
-					result *=numb;
-					textFieldResult.setText(Double.toString(result) );
-					numb = 0;
-				}
+				numb = Double.parseDouble(input);
+				result *=numb;
+				textFieldResult.setText(Double.toString(result) );
+				numb = 0;
+
 				textFieldInput.setText("");
 				pointPressed = false;
 			}
@@ -132,12 +125,10 @@ public class guiCalculator extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				input = textFieldInput.getText();
-				if (input.matches(regexNumb) ) {
-					numb = Double.parseDouble(input);
-					result /=numb;
-					textFieldResult.setText(Double.toString(result) );
-					numb = 0;
-				}
+				numb = Double.parseDouble(input);
+				result /=numb;
+				textFieldResult.setText(Double.toString(result) );
+				numb = 0;
 				textFieldInput.setText("");
 				pointPressed = false;
 				
