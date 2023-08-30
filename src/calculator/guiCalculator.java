@@ -41,13 +41,6 @@ public class guiCalculator extends JFrame {
 	
 	public guiCalculator() {
 		
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowActivated(WindowEvent e) {
-				textFieldInput.requestFocus();
-			}
-		});
-		
 		setResizable(false);
 		setSize(WIDHT, HEIGHT);
 		setLocationRelativeTo(null);
@@ -83,7 +76,6 @@ public class guiCalculator extends JFrame {
 					numb = 0;
 				}
 				textFieldInput.setText("");
-				textFieldInput.requestFocus();
 				pointPressed = false;
 			}
 		});
@@ -104,7 +96,6 @@ public class guiCalculator extends JFrame {
 					numb = 0;
 				}
 				textFieldInput.setText("");
-				textFieldInput.requestFocus();
 				pointPressed = false;
 			}
 		});
@@ -124,7 +115,6 @@ public class guiCalculator extends JFrame {
 					numb = 0;
 				}
 				textFieldInput.setText("");
-				textFieldInput.requestFocus();
 				pointPressed = false;
 			}
 		});
@@ -144,7 +134,6 @@ public class guiCalculator extends JFrame {
 					numb = 0;
 				}
 				textFieldInput.setText("");
-				textFieldInput.requestFocus();
 				pointPressed = false;
 				
 			}
@@ -159,10 +148,9 @@ public class guiCalculator extends JFrame {
 				
 				result = 0;
 				numb = 0;
-				pointPressed = false;
 				textFieldResult.setText(Double.toString(result) );
 				textFieldInput.setText("");
-				textFieldInput.requestFocus();
+				pointPressed = false;
 				
 			}
 		});
