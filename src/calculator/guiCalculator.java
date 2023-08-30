@@ -37,27 +37,6 @@ public class guiCalculator extends JFrame {
 			}
 		});
 	}
-
-	public String charFilter(String string) {
-		
-		String filter = string;
-		if (filter.matches("[+]+")){
-			filter = filter.replaceAll("+", "");
-		}
-		if (filter.matches("[-]+")){
-			filter = filter.replace("-", "");
-		}
-		if (filter.matches("[*]+")){
-			filter = filter.replace("*", "");
-		}
-		if (filter.matches("[/]+")){
-			filter = filter.replace("/", "");
-		}
-		
-		
-		return filter;
-		
-	}
 	
 	public guiCalculator() {
 		
@@ -99,6 +78,7 @@ public class guiCalculator extends JFrame {
 					numb = Integer.parseInt(input);
 					result +=numb;
 					textFieldResult.setText(Integer.toString(result) );
+					numb = 0;
 				}
 				textFieldInput.setText("");
 				textFieldInput.requestFocus();
@@ -118,6 +98,7 @@ public class guiCalculator extends JFrame {
 					numb = Integer.parseInt(input);
 					result -=numb;
 					textFieldResult.setText(Integer.toString(result) );
+					numb = 0;
 				}
 				textFieldInput.setText("");
 				textFieldInput.requestFocus();
@@ -136,6 +117,7 @@ public class guiCalculator extends JFrame {
 					numb = Integer.parseInt(input);
 					result *=numb;
 					textFieldResult.setText(Integer.toString(result) );
+					numb = 0;
 				}
 				textFieldInput.setText("");
 				textFieldInput.requestFocus();
@@ -154,6 +136,7 @@ public class guiCalculator extends JFrame {
 					numb = Integer.parseInt(input);
 					result /=numb;
 					textFieldResult.setText(Integer.toString(result) );
+					numb = 0;
 				}
 				textFieldInput.setText("");
 				textFieldInput.requestFocus();
@@ -169,6 +152,7 @@ public class guiCalculator extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				result = 0;
+				numb = 0;
 				textFieldResult.setText(Integer.toString(result) );
 				textFieldInput.setText("");
 				textFieldInput.requestFocus();
