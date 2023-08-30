@@ -59,7 +59,7 @@ public class guiCalculator extends JFrame {
 
 		textFieldInput.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldInput.setFont(new Font("Dialog", Font.PLAIN, 20));
-		textFieldInput.setBounds(12, 57, 326, 40);
+		textFieldInput.setBounds(22, 57, 305, 40);
 		textFieldInput.setColumns(10);
 		panel.add(textFieldInput);
 		
@@ -333,60 +333,82 @@ public class guiCalculator extends JFrame {
 		buttonPoint.setBounds(126, 294, 43, 50);
 		panel.add(buttonPoint);
 		
+		
+		// Backspace
+		JButton buttonBackspace = new JButton("<-");
+		buttonBackspace.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input = textFieldInput.getText();
+				textFieldInput.setText( input.substring(0, input.length()-1) );
+			}
+		});
+		buttonBackspace.setFont(new Font("Dialog", Font.BOLD, 15));
+		buttonBackspace.setBounds(264, 12, 63, 33);
+		panel.add(buttonBackspace);
+		
+		
 		textFieldInput.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				Character key = e.getKeyChar();
-				String keyValue = key.toString();
-				
-			switch (keyValue) {
-				case "0":
-					button0.doClick();
-					break;
-				case "1":
-					button1.doClick();
-					break;
-				case "2":
-					button2.doClick();
-					break;
-				case "3":
-					button3.doClick();
-					break;
-				case "4":
-					button4.doClick();
-					break;
-				case "5":
-					button5.doClick();
-					break;
-				case "6":
-					button6.doClick();
-					break;
-				case "7":
-					button7.doClick();
-					break;
-				case "8":
-					button8.doClick();
-					break;
-				case "9":
-					button9.doClick();
-					break;
-				case ".":
-					buttonPoint.doClick();
-					break;
-				case "+":
-					buttonAdd.doClick();
-					break;
-				case "-":
-					buttonSub.doClick();
-					break;
-				case "/":
-					buttonDiv.doClick();
-					break;
-				case "*":
-					buttonMult.doClick();
-					break;
-			}
-				
+			public void keyPressed(KeyEvent k) {
+			
+				if(k.getKeyCode() == KeyEvent.VK_BACK_SPACE)
+			    {  
+			        buttonBackspace.doClick();
+			    } else 
+			    {
+			    	Character key = k.getKeyChar();
+			    	String keyValue = key.toString();
+					
+					switch (keyValue) {
+						case "0":
+							button0.doClick();
+							break;
+						case "1":
+							button1.doClick();
+							break;
+						case "2":
+							button2.doClick();
+							break;
+						case "3":
+							button3.doClick();
+							break;
+						case "4":
+							button4.doClick();
+							break;
+						case "5":
+							button5.doClick();
+							break;
+						case "6":
+							button6.doClick();
+							break;
+						case "7":
+							button7.doClick();
+							break;
+						case "8":
+							button8.doClick();
+							break;
+						case "9":
+							button9.doClick();
+							break;
+						case ".":
+							buttonPoint.doClick();
+							break;
+						case "+":
+							buttonAdd.doClick();
+							break;
+						case "-":
+							buttonSub.doClick();
+							break;
+						case "/":
+							buttonDiv.doClick();
+							break;
+						case "*":
+							buttonMult.doClick();
+							break;
+					}
+			    	
+			    }
+
 			
 			}
 		});
