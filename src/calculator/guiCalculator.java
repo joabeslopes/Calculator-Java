@@ -339,7 +339,10 @@ public class guiCalculator extends JFrame {
 		buttonBackspace.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				input = textFieldInput.getText();
-				textFieldInput.setText( input.substring(0, input.length()-1) );
+				if (!input.equals("")) {
+					textFieldInput.setText( input.substring(0, input.length()-1) );
+				}
+				
 			}
 		});
 		buttonBackspace.setFont(new Font("Dialog", Font.BOLD, 15));
