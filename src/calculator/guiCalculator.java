@@ -15,14 +15,16 @@ import java.awt.event.KeyEvent;
 
 public class guiCalculator extends JFrame {
 
-	final int WIDHT = 350;
-	final int HEIGHT = 390;
+	private final int WIDHT = 350;
+	private final int HEIGHT = 390;
 	private JTextField textFieldInput;
 	private String input;
-	private double numb = 0.0;
-	private double result = 0.0;
+	private double numb1 = 0.0;
+	private double numb2 = 0.0;
 	private JTextField textFieldResult;
-	boolean pointPressed = false;
+	private boolean pointPressed = false;
+	private String lastOperation = "";
+	private JButton buttonEnter;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -51,15 +53,78 @@ public class guiCalculator extends JFrame {
 		panel.setBackground(new Color(129, 61, 156));
 		getContentPane().add(panel);
 		panel.setLayout(null);
-		
 
 		textFieldInput = new JTextField();
 		textFieldInput.setEditable(false);
 		textFieldInput.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldInput.setFont(new Font("Dialog", Font.PLAIN, 20));
-		textFieldInput.setBounds(22, 57, 305, 40);
+		textFieldInput.setBounds(22, 57, 204, 40);
 		textFieldInput.setColumns(10);
 		panel.add(textFieldInput);
+		
+		
+		// Enter
+		buttonEnter = new JButton("=");
+		buttonEnter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+			input = textFieldInput.getText();
+			
+			if (lastOperation.equals("") && !input.equals("")) {
+					numb1 = Double.parseDouble(input);
+					textFieldResult.setText(Double.toString(numb1) );
+					textFieldInput.setText("");
+
+			} 
+			else
+			{
+				switch (lastOperation) {
+				case "+":
+					checkNumb2();
+					numb1 += numb2;
+					numb2 = 0.0;
+					textFieldResult.setText(Double.toString(numb1) );
+					textFieldInput.setText("");
+					
+					break;
+				case "-":
+					checkNumb2();
+					numb1 -= numb2;
+					numb2 = 0.0;
+					textFieldResult.setText(Double.toString(numb1) );
+					textFieldInput.setText("");
+					
+					break;
+				case "*":
+					checkNumb2();
+					numb1 *= numb2;
+					numb2 = 0.0;
+					textFieldResult.setText(Double.toString(numb1) );
+					textFieldInput.setText("");
+					
+					break;
+				case "/":
+					checkNumb2();
+					if (numb2 !=0) 
+					{
+						numb1 /= numb2;
+						numb2 = 0.0;
+						textFieldResult.setText(Double.toString(numb1) );
+					}
+					
+					textFieldInput.setText("");
+					
+					break;
+				}
+			}
+			
+			lastOperation = "";
+			textFieldInput.requestFocus();
+			}
+		});
+		buttonEnter.setFont(new Font("Dialog", Font.BOLD, 22));
+		buttonEnter.setBounds(247, 260, 80, 84);
+		panel.add(buttonEnter);
 		
 		
 		// +
@@ -67,19 +132,12 @@ public class guiCalculator extends JFrame {
 		buttonAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				input = textFieldInput.getText();
-				numb = Double.parseDouble(input);
-				result +=numb;
-				textFieldResult.setText(Double.toString(result) );
-				numb = 0;
-				
-				textFieldInput.setText("");
-				pointPressed = false;
-				textFieldInput.requestFocus();
+				operationButton();
+				lastOperation = "+";
 			}
 		});
 		buttonAdd.setFont(new Font("Dialog", Font.BOLD, 22));
-		buttonAdd.setBounds(247, 109, 80, 50);
+		buttonAdd.setBounds(247, 12, 80, 50);
 		panel.add(buttonAdd);
 		
 		
@@ -88,18 +146,12 @@ public class guiCalculator extends JFrame {
 		buttonSub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				input = textFieldInput.getText();
-				numb = Double.parseDouble(input);
-				result -=numb;
-				textFieldResult.setText(Double.toString(result) );
-				numb = 0;
-				textFieldInput.setText("");
-				pointPressed = false;
-				textFieldInput.requestFocus();
+				operationButton();
+				lastOperation = "-";
 			}
 		});
 		buttonSub.setFont(new Font("Dialog", Font.BOLD, 22));
-		buttonSub.setBounds(247, 171, 80, 50);
+		buttonSub.setBounds(247, 74, 80, 50);
 		panel.add(buttonSub);
 		
 		
@@ -108,18 +160,12 @@ public class guiCalculator extends JFrame {
 		buttonMult.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				input = textFieldInput.getText();
-				numb = Double.parseDouble(input);
-				result *=numb;
-				textFieldResult.setText(Double.toString(result) );
-				numb = 0;
-				textFieldInput.setText("");
-				pointPressed = false;
-				textFieldInput.requestFocus();
+				operationButton();
+				lastOperation = "*";
 			}
 		});
 		buttonMult.setFont(new Font("Dialog", Font.BOLD, 22));
-		buttonMult.setBounds(247, 232, 80, 50);
+		buttonMult.setBounds(247, 136, 80, 50);
 		panel.add(buttonMult);
 		
 		
@@ -128,19 +174,12 @@ public class guiCalculator extends JFrame {
 		buttonDiv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				input = textFieldInput.getText();
-				numb = Double.parseDouble(input);
-				result /=numb;
-				textFieldResult.setText(Double.toString(result) );
-				numb = 0;
-				textFieldInput.setText("");
-				pointPressed = false;
-				textFieldInput.requestFocus();
-				
+				operationButton();
+				lastOperation = "/";
 			}
 		});
 		buttonDiv.setFont(new Font("Dialog", Font.BOLD, 22));
-		buttonDiv.setBounds(247, 294, 80, 50);
+		buttonDiv.setBounds(247, 198, 80, 50);
 		panel.add(buttonDiv);
 		
 		
@@ -149,9 +188,9 @@ public class guiCalculator extends JFrame {
 		buttonClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				result = 0;
-				numb = 0;
-				textFieldResult.setText(Double.toString(result) );
+				numb1 = 0.0;
+				numb2 = 0.0;
+				textFieldResult.setText("0.0");
 				textFieldInput.setText("");
 				pointPressed = false;
 				textFieldInput.requestFocus();
@@ -168,7 +207,7 @@ public class guiCalculator extends JFrame {
 		textFieldResult.setEditable(false);
 		textFieldResult.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldResult.setFont(new Font("Dialog", Font.PLAIN, 20));
-		textFieldResult.setBounds(102, 12, 150, 35);
+		textFieldResult.setBounds(22, 10, 147, 35);
 		textFieldResult.setColumns(10);
 		panel.add(textFieldResult);
 		
@@ -342,9 +381,10 @@ public class guiCalculator extends JFrame {
 				
 			}
 		});
-		buttonBackspace.setFont(new Font("Dialog", Font.BOLD, 15));
-		buttonBackspace.setBounds(264, 12, 63, 33);
+		buttonBackspace.setFont(new Font("Dialog", Font.BOLD, 10));
+		buttonBackspace.setBounds(179, 10, 47, 35);
 		panel.add(buttonBackspace);
+		
 		
 		
 		textFieldInput.addKeyListener(new KeyAdapter() {
@@ -359,6 +399,10 @@ public class guiCalculator extends JFrame {
 				else if (k.getKeyCode() == KeyEvent.VK_ESCAPE || k.getKeyCode() == KeyEvent.VK_C ) 
 				{
 					buttonClear.doClick();
+				}
+				
+				else if (k.getKeyCode() == KeyEvent.VK_ENTER || k.getKeyCode() == KeyEvent.VK_EQUALS ) {
+					buttonEnter.doClick();
 				}
 				
 				else 
@@ -417,7 +461,35 @@ public class guiCalculator extends JFrame {
 			    }
 			}
 		});
-
 		
 	}
+	
+	public void operationButton() {
+		
+		if (numb1 == 0) 
+		{
+			input = textFieldInput.getText();
+			if( !input.equals("")) 
+			{
+				numb1 = Double.parseDouble(input);
+				textFieldResult.setText(Double.toString(numb1) );
+				textFieldInput.setText("");
+			}
+		}
+		else
+		{
+			buttonEnter.doClick();
+		}
+		pointPressed = false;
+		textFieldInput.requestFocus();
+		
+	}
+	
+	public void checkNumb2() {
+		if (numb2==0 && !input.equals("")) {
+			numb2 = Double.parseDouble(input);
+		}
+	}
+
+	
 }
