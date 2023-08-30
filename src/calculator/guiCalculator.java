@@ -1,7 +1,6 @@
 package calculator;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -56,7 +55,6 @@ public class guiCalculator extends JFrame {
 
 		textFieldInput = new JTextField();
 		textFieldInput.setEditable(false);
-
 		textFieldInput.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldInput.setFont(new Font("Dialog", Font.PLAIN, 20));
 		textFieldInput.setBounds(22, 57, 305, 40);
@@ -115,7 +113,6 @@ public class guiCalculator extends JFrame {
 				result *=numb;
 				textFieldResult.setText(Double.toString(result) );
 				numb = 0;
-
 				textFieldInput.setText("");
 				pointPressed = false;
 				textFieldInput.requestFocus();
@@ -418,9 +415,9 @@ public class guiCalculator extends JFrame {
 					}
 			    	
 			    }
-			
 			}
 		});
 
+		
 	}
 }
