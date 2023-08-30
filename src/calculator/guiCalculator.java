@@ -17,13 +17,14 @@ import java.awt.event.WindowEvent;
 public class guiCalculator extends JFrame {
 
 	final int WIDHT = 350;
-	final int HEIGHT = 400;
+	final int HEIGHT = 390;
 	private JTextField textFieldInput;
 	private String input;
 	private String regexNumb = "[0-9]*.[0-9]*";
 	private double numb = 0.0;
 	private double result = 0.0;
 	private JTextField textFieldResult;
+	boolean pointPressed = false;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -83,6 +84,7 @@ public class guiCalculator extends JFrame {
 				}
 				textFieldInput.setText("");
 				textFieldInput.requestFocus();
+				pointPressed = false;
 			}
 		});
 		
@@ -103,6 +105,7 @@ public class guiCalculator extends JFrame {
 				}
 				textFieldInput.setText("");
 				textFieldInput.requestFocus();
+				pointPressed = false;
 			}
 		});
 		btnSub.setFont(new Font("Dialog", Font.BOLD, 22));
@@ -122,6 +125,7 @@ public class guiCalculator extends JFrame {
 				}
 				textFieldInput.setText("");
 				textFieldInput.requestFocus();
+				pointPressed = false;
 			}
 		});
 		btnMult.setFont(new Font("Dialog", Font.BOLD, 22));
@@ -141,6 +145,7 @@ public class guiCalculator extends JFrame {
 				}
 				textFieldInput.setText("");
 				textFieldInput.requestFocus();
+				pointPressed = false;
 				
 			}
 		});
@@ -154,6 +159,7 @@ public class guiCalculator extends JFrame {
 				
 				result = 0;
 				numb = 0;
+				pointPressed = false;
 				textFieldResult.setText(Double.toString(result) );
 				textFieldInput.setText("");
 				textFieldInput.requestFocus();
@@ -161,7 +167,7 @@ public class guiCalculator extends JFrame {
 			}
 		});
 		btnClear.setFont(new Font("Dialog", Font.BOLD, 20));
-		btnClear.setBounds(22, 294, 95, 60);
+		btnClear.setBounds(22, 294, 95, 50);
 		panel.add(btnClear);
 		
 		textFieldResult = new JTextField();
@@ -174,58 +180,129 @@ public class guiCalculator extends JFrame {
 		panel.add(textFieldResult);
 		
 		JButton button1 = new JButton("1");
+		button1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input = textFieldInput.getText();
+				textFieldInput.setText(input.concat("1"));
+			}
+		});
 		button1.setFont(new Font("Dialog", Font.BOLD, 20));
 		button1.setBounds(22, 109, 50, 50);
 		panel.add(button1);
 		
 		JButton button2 = new JButton("2");
+		button2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input = textFieldInput.getText();
+				textFieldInput.setText(input.concat("2"));
+			}
+		});
 		button2.setFont(new Font("Dialog", Font.BOLD, 20));
 		button2.setBounds(102, 109, 50, 50);
 		panel.add(button2);
 		
 		JButton button3 = new JButton("3");
+		button3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input = textFieldInput.getText();
+				textFieldInput.setText(input.concat("3"));
+			}
+		});
 		button3.setFont(new Font("Dialog", Font.BOLD, 20));
 		button3.setBounds(178, 109, 50, 50);
 		panel.add(button3);
 		
 		JButton button4 = new JButton("4");
+		button4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input = textFieldInput.getText();
+				textFieldInput.setText(input.concat("4"));
+			}
+		});
 		button4.setFont(new Font("Dialog", Font.BOLD, 20));
 		button4.setBounds(22, 171, 50, 50);
 		panel.add(button4);
 		
 		JButton button5 = new JButton("5");
+		button5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input = textFieldInput.getText();
+				textFieldInput.setText(input.concat("5"));
+			}
+		});
 		button5.setFont(new Font("Dialog", Font.BOLD, 20));
 		button5.setBounds(102, 171, 50, 50);
 		panel.add(button5);
 		
 		JButton button6 = new JButton("6");
+		button6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input = textFieldInput.getText();
+				textFieldInput.setText(input.concat("6"));
+			}
+		});
 		button6.setFont(new Font("Dialog", Font.BOLD, 20));
 		button6.setBounds(178, 171, 50, 50);
 		panel.add(button6);
 		
 		JButton button7 = new JButton("7");
+		button7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input = textFieldInput.getText();
+				textFieldInput.setText(input.concat("7"));
+			}
+		});
 		button7.setFont(new Font("Dialog", Font.BOLD, 20));
 		button7.setBounds(22, 232, 50, 50);
 		panel.add(button7);
 		
 		JButton button8 = new JButton("8");
+		button8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input = textFieldInput.getText();
+				textFieldInput.setText(input.concat("8"));
+			}
+		});
 		button8.setFont(new Font("Dialog", Font.BOLD, 20));
 		button8.setBounds(102, 232, 50, 50);
 		panel.add(button8);
 		
 		JButton button9 = new JButton("9");
+		button9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input = textFieldInput.getText();
+				textFieldInput.setText(input.concat("9"));
+			}
+		});
 		button9.setFont(new Font("Dialog", Font.BOLD, 20));
 		button9.setBounds(178, 232, 50, 50);
 		panel.add(button9);
 		
 		JButton button0 = new JButton("0");
+		button0.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input = textFieldInput.getText();
+				textFieldInput.setText(input.concat("0"));
+			}
+		});
 		button0.setFont(new Font("Dialog", Font.BOLD, 20));
-		button0.setBounds(178, 294, 50, 60);
+		button0.setBounds(178, 294, 50, 50);
 		panel.add(button0);
 		
+
 		JButton buttonPoint = new JButton(".");
+		buttonPoint.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (!pointPressed) {
+					input = textFieldInput.getText();
+					textFieldInput.setText(input.concat("."));
+					pointPressed = true;
+				}
+			}
+		});
 		buttonPoint.setFont(new Font("Dialog", Font.BOLD, 20));
-		buttonPoint.setBounds(125, 294, 43, 60);
+		buttonPoint.setBounds(126, 294, 43, 50);
 		panel.add(buttonPoint);
 
 	}
